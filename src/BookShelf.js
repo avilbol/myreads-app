@@ -11,7 +11,7 @@ const BookShelf = ({shelfName, books, onBookSwitchShelf}) => (
                     <li>
                         <BookDetail 
                             book={book}
-                            shelf={shelfState[`${book.id}-shelf`]}
+                            shelf={shelfState[`${book.id}-shelf`] | "None"}
                             onBookSwitchShelf={onBookSwitchShelf}/>
                     </li>
                 })}

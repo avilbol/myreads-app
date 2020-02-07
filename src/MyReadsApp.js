@@ -11,7 +11,7 @@ class MyReadsApp extends Component {
 
     books = []
 
-    onBookShelfSwitch = ({ book, shelf }) => {
+    onBookShelfSwitch = (book, shelf) => {
         update(book, shelf)
             .then(() => {
                 let bookShelf = `${book.id}-shelf`
