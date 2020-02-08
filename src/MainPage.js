@@ -21,24 +21,26 @@ class MainPage extends Component {
         return (
             <div className="list-books">
                 <div className="list-books-title">
-                <h1>MyReads</h1>
+                    <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
-                <div>
-                    {this.shelves.map((shelf) => {
-                        let shelfBooks = booksByShelf[shelf.key]
-                        return shelfBooks && (
-                            <BookShelf 
-                                key={shelf.key}
-                                name={shelf.name}
-                                books={shelfBooks}
-                                onBookShelfSwitch={onBookShelfSwitch} />)
-                        }
-                    )}
-                </div>
+                    <div>
+                        {this.shelves.map((shelf) => {
+                            let shelfBooks = booksByShelf[shelf.key]
+                            return shelfBooks && (
+                                <BookShelf 
+                                    key={shelf.key}
+                                    name={shelf.name}
+                                    books={shelfBooks}
+                                    onBookShelfSwitch={onBookShelfSwitch} />)
+                            }
+                        )}
+                    </div>
                 </div>
                 <div className="open-search">
-                <Link to="/search">Add a book</Link>
+                    <Link to="/search">
+                        <button>Add a book</button>
+                    </Link>
                 </div>
             </div>
         )

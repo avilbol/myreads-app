@@ -8,7 +8,8 @@ const BookShelf = (props) => {
         <div className="bookshelf">
             <h2 className="bookshelf-title">{name}</h2>
             <div className="bookshelf-books">
-                <ol className="books-grid">
+                {books.length === 0 && (<p>There is no books here</p>)}
+                {books.length > 0 && (<ol className="books-grid">
                     {books.map(book => (
                         <li key={book.id}>
                             <BookDetail 
@@ -16,7 +17,7 @@ const BookShelf = (props) => {
                                 onBookShelfSwitch={onBookShelfSwitch}/>
                         </li>
                     ))}
-                </ol>
+                </ol>)}
             </div>
         </div>
     )

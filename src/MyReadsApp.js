@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 
-import { BrowserRouter as Router} from 'react-router-dom'
+import { 
+    BrowserRouter as Router,
+    Route
+} from 'react-router-dom'
 
 import { getAll, update } from './BooksAPI'
 
@@ -25,16 +28,20 @@ class MyReadsApp extends Component {
 
     render = () => (
         <Router>
-            <MainPage 
-                books={this.books}
-                shelfState={this.state}
-                onBookShelfSwitch={this.onBookShelfSwitch}
-            />
-            <SearchPage 
-                books={this.books}
-                shelfState={this.state}
-                onBookShelfSwitch={this.onBookShelfSwitch}
-            />
+            <Route exact path="/">
+                <MainPage 
+                    books={this.books}
+                    shelfState={this.state}
+                    onBookShelfSwitch={this.onBookShelfSwitch}
+                />
+            </Route>
+            <Route exact path="/search">
+                <SearchPage 
+                    books={this.books}
+                    shelfState={this.state}
+                    onBookShelfSwitch={this.onBookShelfSwitch}
+                />
+            </Route>
         </Router>
     )
 
@@ -50,7 +57,6 @@ class MyReadsApp extends Component {
         books.forEach(book => {
             shelfState[`${book.id}-shelf`] = book.shelf
         })
-        console.log("set state")
         this.setState(shelfState)
     }
 }
