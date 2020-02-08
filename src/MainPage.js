@@ -26,8 +26,8 @@ class MainPage extends Component {
                 <div className="list-books-content">
                     <div>
                         {this.shelves.map((shelf) => {
-                            let shelfBooks = booksByShelf[shelf.key]
-                            return shelfBooks && (
+                            let shelfBooks = booksByShelf[shelf.key] || []
+                            return (
                                 <BookShelf 
                                     key={shelf.key}
                                     name={shelf.name}

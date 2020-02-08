@@ -2,11 +2,17 @@ import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
 
+import { search } from './BooksAPI'
+
 /**
  * Component that represents the search page with a searh bar and the panel
  * with query results
  */
 class SearchPage extends Component {
+
+    state = {
+        "search": ""
+    }
 
     render = () => (
         <div className="search-books">
@@ -29,7 +35,7 @@ class SearchPage extends Component {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    
+
                 </ol>
             </div>
         </div>
