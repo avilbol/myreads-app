@@ -7,6 +7,8 @@ import { getAll, update } from './BooksAPI'
 import MainPage from './MainPage'
 import SearchPage from './SearchPage'
 
+import './App.css'
+
 class MyReadsApp extends Component {
 
     books = []
@@ -48,6 +50,7 @@ class MyReadsApp extends Component {
         books.forEach(book => {
             shelfState[`${book.id}-shelf`] = book.shelf
         })
+        console.log("set state")
         this.setState(shelfState)
     }
 }
