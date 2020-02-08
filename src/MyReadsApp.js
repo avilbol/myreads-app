@@ -5,7 +5,7 @@ import {
     Route
 } from 'react-router-dom'
 
-import { getAll, update } from './BooksAPI'
+import { get, getAll, update } from './BooksAPI'
 
 import MainPage from './MainPage'
 import SearchPage from './SearchPage'
@@ -16,7 +16,24 @@ class MyReadsApp extends Component {
 
     books = []
 
+    state = {
+        "loading": true
+    }
+
     onBookShelfSwitch = (book, shelf) => {
+        if(this.books.filter(
+            it => it.id === book.id).length === 0) {
+            get(book.id).then(book => {
+                book.shelf = shelf
+                this.books.push(...[book]);
+                this.updateShelfState(book, shelf);
+            })
+        } else {
+            this.updateShelfState(book, shelf);
+        }
+    }
+
+    updateShelfState = (book, shelf) => {
         update(book, shelf)
             .then(() => {
                 let bookShelf = `${book.id}-shelf`
@@ -31,6 +48,7 @@ class MyReadsApp extends Component {
             <Route exact path="/">
                 <MainPage 
                     books={this.books}
+                    loading={this.state.loading}
                     shelfState={this.state}
                     onBookShelfSwitch={this.onBookShelfSwitch}
                 />
@@ -48,16 +66,17 @@ class MyReadsApp extends Component {
     componentDidMount() {
         getAll().then(books => {
             this.books = books
-            this.configureShelfState(this.books)
+            this.configureState(this.books)
         })
     }
 
-    configureShelfState = books => {
-        let shelfState = {}
+    configureState = books => {
+        let newState = {}
         books.forEach(book => {
-            shelfState[`${book.id}-shelf`] = book.shelf
+            newState[`${book.id}-shelf`] = book.shelf
         })
-        this.setState(shelfState)
+        newState.loading = false
+        this.setState(newState)
     }
 }
 
