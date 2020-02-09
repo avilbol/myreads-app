@@ -38,8 +38,15 @@ class SearchPage extends Component {
     };
 
     onChange = e => {
-        this.handleChangeDebounced(e);
-        e.persist();
+        if(e.target.value === "") {
+            this.setState({
+                "searchText": "",
+                "books": []
+            });
+        } else {
+            this.handleChangeDebounced(e);
+            e.persist();
+        }
     };
 
     render = () => {
