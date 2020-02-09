@@ -9,7 +9,7 @@ import BookList from './BookList'
 
 /**
  * Component that represents the search page with a searh bar and the panel
- * with query results
+ * with query results (books with an option to assign a shelf)
  */
 class SearchPage extends Component {
 

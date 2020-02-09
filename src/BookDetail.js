@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+/**
+ * Represents the UI generated from a books state and props
+ */
 class BookDetail extends Component {
 
     handleShelfChange = (e, book) => {

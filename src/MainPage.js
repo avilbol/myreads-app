@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
 /**
- * Component that represents the main page (books categorized)
+ * Component that represents the main page (books for each shelf)
  */
 class MainPage extends Component {
 
